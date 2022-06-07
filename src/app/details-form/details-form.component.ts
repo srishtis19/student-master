@@ -1,11 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { countryList } from '../countryList';
+import { StudentDetailsService } from '../student-details.service';
 
 
 @Component({
@@ -21,9 +22,23 @@ export class DetailsFormComponent implements OnInit {
   hobbies: string[] = [];
   allHobbies: string[] = ['Reading','Dancing','Singing','Music','Playing'];
 
+
+  detailsForm = new FormGroup({
+
+    firstName : new FormControl(''),
+    lastName : new FormControl(''),
+    age : new FormControl(''),
+    gender : new FormControl(''),
+    country: new FormControl(''),
+    state: new FormControl(''),
+    studentHobbies: new FormControl(this.hobbies)
+
+  })
+
+ 
   @ViewChild('hobbiesInput') hobbiesInput!: ElementRef<HTMLInputElement>;
 
-  constructor() {
+  constructor(private studentDetailsService: StudentDetailsService) {
     this.filteredHobbies = this.hobbiesCtrl.valueChanges.pipe(
       startWith(null),
       map((hobby: string | null) => (hobby? this._filter(hobby) : this.allHobbies.slice())),
@@ -42,7 +57,7 @@ export class DetailsFormComponent implements OnInit {
     // Clear the input value
     event.chipInput!.clear();
 
-    this.hobbiesCtrl.setValue(null);
+    this.hobbiesCtrl.setValue(null)
   }
 
   remove(hobby: string): void {
@@ -56,7 +71,7 @@ export class DetailsFormComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.hobbies.push(event.option.viewValue);
     this.hobbiesInput.nativeElement.value = '';
-    this.hobbiesCtrl.setValue(null);
+    this.hobbiesCtrl.setValue(null)
   }
 
   private _filter(value: string): string[] {
@@ -73,5 +88,9 @@ export class DetailsFormComponent implements OnInit {
   cities!: Array<any>;
   selectedCountry:any = "none"
   
-
+  onSubmit(){
+    let studentData = this.detailsForm.value
+    console.log(studentData)
+    this.studentDetailsService.submitForm(studentData)
+  }
 }

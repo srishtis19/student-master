@@ -16,11 +16,6 @@
     margin-top: 100px; */
 }
 
-.button-icon {
-    font-size: x-large;
-}
-
-
 /* td.mat-cell, th.mat-header-cell {
     text-align: center !important;
 } */
@@ -47,4 +42,7 @@ table {
 
 .button-text {
     margin: 10px;
+}
+.button-icon {
+    font-size: x-large;
 }

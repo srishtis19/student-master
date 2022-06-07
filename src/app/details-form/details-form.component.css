@@ -1,5 +1,5 @@
 .form {
-    width:50%;
+    width:40%;
     /* border-style: solid;*/
     border-radius: 5px; 
     margin: auto;
@@ -13,4 +13,18 @@ mat-grid-list {
 
 .chip-list {
   width: 60%;
+}
+
+.submit-button {
+    width:200px;
+    height: 50px;
+    font-size: x-large;
+    padding: auto;
+}
+
+.button-text {
+    margin: 15px;
+}
+.button-icon {
+    font-size: x-large;
 }

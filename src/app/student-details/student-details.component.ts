@@ -1,7 +1,9 @@
 import {  AfterViewInit, ViewChild , Component, OnInit } from '@angular/core';
-import { student, studentData } from '../students';
+import { student } from '../students';
 import { MatPaginator } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { StudentDetailsService } from '../student-details.service';
+
 
 @Component({
   selector: 'app-student-details',
@@ -11,20 +13,38 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class StudentDetailsComponent implements AfterViewInit {
   
+  studentData:any = []
+  dataSource!:any
 
-  constructor() { }
+  constructor(private studentDetailsService: StudentDetailsService) { }
+  ngOnInit(){
+
+    this.studentDetailsService.getData().subscribe((res)=>{
+      this.studentData = res
+      this.dataSource = new MatTableDataSource<any>(this.studentData);
+      this.dataSource._updateChangeSubscription()
+      this.dataSource.paginator = this.paginator;
+    })
+
+
+  }
+  ngAfterViewInit() {
+    
+  }
+
+  
 
   displayedColumns: string[] = [ 'name','age','gender','city','state','hobbies','delete'];
   //dataSource = studentData
-  dataSource = new MatTableDataSource<any>(studentData);
+  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  
 
   removeStudent(student:student) {
+
+    this.studentDetailsService.removeStudent(student._id)
     
     const index = this.dataSource.data.indexOf(student)
     this.dataSource.data.splice(index,1)

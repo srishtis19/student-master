@@ -1,11 +1,12 @@
 export interface student {
-    index: number,
-    name: string,
+    _id:any,
+    firstName: string,
+    lastName: string,
     age: number,
     gender: string,
-    city: string,
+    country:string,
     state: string,
-    hobbies: string[]
+    studentHobbies: string[]
 }
 export const studentData = [
     {
