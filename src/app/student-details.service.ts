@@ -10,6 +10,7 @@ export class StudentDetailsService {
 
   constructor(private http: HttpClient) { }
 
+  // Service to submit form data to backend
   submitForm(data:any) {
     const URL = "http://localhost:8080/sendStudentDetails"
     return this.http.post<any>(URL, data)
@@ -19,11 +20,13 @@ export class StudentDetailsService {
     });
   }
 
+  // Service to get Student Details data from backend
   getData():Observable<any> {
     const URL = "http://localhost:8080/getStudentDetails"
     return this.http.get<any>(URL)
   }
 
+  // Service to delete student entry
   removeStudent(id:any){
 
     const URL = `http://localhost:8080/removeStudent/${id}`;

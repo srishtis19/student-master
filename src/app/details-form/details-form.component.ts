@@ -16,13 +16,14 @@ import { StudentDetailsService } from '../student-details.service';
 })
 export class DetailsFormComponent implements OnInit {
 
+  // Declaring variables for Mat-chip input
   separatorKeysCodes: number[] = [ENTER, COMMA];
   hobbiesCtrl = new FormControl('');
   filteredHobbies: Observable<string[]>;
   hobbies: string[] = [];
   allHobbies: string[] = ['Reading','Dancing','Singing','Music','Playing'];
 
-
+  // Form Group to store form data
   detailsForm = new FormGroup({
 
     firstName : new FormControl('',[Validators.required]),
@@ -48,6 +49,7 @@ export class DetailsFormComponent implements OnInit {
   
    }
 
+   // Add hobby chip
    add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
@@ -62,6 +64,7 @@ export class DetailsFormComponent implements OnInit {
     this.hobbiesCtrl.setValue(null)
   }
 
+  // Remove hobby chip
   remove(hobby: string): void {
     const index = this.hobbies.indexOf(hobby);
 
@@ -85,11 +88,13 @@ export class DetailsFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // List of all the countries and states
   countryList = countryList
   
   cities!: Array<any>;
   selectedCountry:any = ""
   
+  // Submit form data to backend
   onSubmit(){
     let studentData = this.detailsForm.value
     console.log(studentData)

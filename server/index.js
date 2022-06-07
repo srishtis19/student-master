@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 var bodyParser = require('body-parser');
 const app = express();
-var jsonParser = bodyParser.json()
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
@@ -15,10 +14,7 @@ const ObjectId = require('mongodb').ObjectID;
 
 const connectionString = 'mongodb+srv://srishtis19:spedathome@cluster0.tm4x2jn.mongodb.net/?retryWrites=true&w=majority'
 
-app.listen(port, ()=>{
-    console.log(`App listening to port ${port}`)
-})
-
+// API to send Student Details to MongoDB database
 app.post('/sendStudentDetails',(req,res)=>{
 
     studentData = req.body
@@ -43,9 +39,9 @@ app.post('/sendStudentDetails',(req,res)=>{
         })
       }))
     
-    //return res.send(req.body)
 })
 
+// API to get student details list from MongoDB database
 app.get('/getStudentDetails',(req,res)=>{
 
     MongoClient.connect(connectionString).then((client => {
@@ -65,6 +61,7 @@ app.get('/getStudentDetails',(req,res)=>{
 
 })
 
+// API to delete student entry from MongoDB Database
 app.delete('/removeStudent/:id',(req,res)=>{
     console.log("called!")
 
@@ -80,4 +77,8 @@ app.delete('/removeStudent/:id',(req,res)=>{
 
     }))
 
+})
+
+app.listen(port, ()=>{
+  console.log(`App listening to port ${port}`)
 })

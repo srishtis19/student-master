@@ -1,7 +1,9 @@
+<!--Form to add new student-->
 <div class="form mat-elevation-z8" [formGroup]="detailsForm">
 
     <h1 class="form-header">Add Student Details</h1>
 
+    <!--First Name-->
     <mat-grid-list cols="2" rowHeight="75px">
         <mat-grid-tile>
             <mat-form-field class="text-input" appearance="outline">
@@ -13,6 +15,7 @@
             </mat-form-field>
         </mat-grid-tile>
 
+        <!--Last Name-->
         <mat-grid-tile>
             <mat-form-field class="text-input" appearance="outline">
                 <mat-label>Last Name</mat-label>
@@ -23,6 +26,7 @@
             </mat-form-field>
         </mat-grid-tile>
 
+        <!--Age-->
         <mat-grid-tile  >
             <mat-form-field class="text-input" appearance="outline">
                 <mat-label>Age</mat-label>
@@ -36,6 +40,7 @@
             </mat-form-field>
         </mat-grid-tile>
 
+        <!--Gender-->
         <mat-grid-tile class="gender-input" colspan="1">
             <strong class="gender-label">Gender: </strong>
             <mat-button-toggle-group  name="gender" formControlName="gender">
@@ -44,6 +49,7 @@
             </mat-button-toggle-group>
         </mat-grid-tile>
 
+        <!--Country-->
         <mat-grid-tile >
             <mat-form-field class="text-input" appearance="outline">
                 <mat-label>Country</mat-label>
@@ -57,6 +63,7 @@
             </mat-form-field>
         </mat-grid-tile>
 
+        <!--State-->
         <mat-grid-tile >
             <mat-form-field class="text-input" appearance="outline">
                 <mat-label>State</mat-label>
@@ -70,6 +77,7 @@
             </mat-form-field>
         </mat-grid-tile>
 
+        <!--Hobbies-->
         <mat-grid-tile colspan="2" rowspan="2">
             <mat-form-field class="chip-list" appearance="outline">
                 <mat-label>Hobbies</mat-label>
@@ -99,6 +107,7 @@
               </mat-form-field>
         </mat-grid-tile>
         
+        <!--Submit Button-->
         <mat-grid-tile colspan="2">
             <button mat-raised-button color="primary" [disabled]="!detailsForm.valid" class="submit-button" routerLink="/" (click)="onSubmit()"> 
                 <span class="button-text">Submit</span>
@@ -107,7 +116,5 @@
         </mat-grid-tile>
 
     </mat-grid-list>
-    
-
 
 </div>
