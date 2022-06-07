@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.detail-card {
+    width: 300px;
+}
+
+.student-table {
+    width: 70%;
+    margin-top: 30px;
+    /* margin: auto;
+    margin-top: 100px; */
+}
+
+.button-icon {
+    font-size: x-large;
+}
+
+
+/* td.mat-cell, th.mat-header-cell {
+    text-align: center !important;
+} */
+
+
+
+th.mat-header-cell {
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: large;
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
+}
+
+.add-button {
+    width:250px;
+    height: 50px;
+    font-size: x-large;
+    padding: auto;
+}
+
+.button-text {
+    margin: 10px;
+}

@@ -1,0 +1,90 @@
+<div class="form mat-elevation-z8">
+
+    <h1>Add Student Details</h1>
+    <mat-divider></mat-divider>
+
+    <mat-grid-list cols="2" rowHeight="75px">
+        <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+            <mat-form-field appearance="outline">
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="Age">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+            Gender:
+            <mat-button-toggle-group name="gender" >
+                <mat-button-toggle value="Male">Male</mat-button-toggle>
+                <mat-button-toggle value="Female">Female</mat-button-toggle>
+            </mat-button-toggle-group>
+        </mat-grid-tile>
+
+        <mat-grid-tile >
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <mat-select [(value)]="selectedCountry" >
+                    <mat-option value="none">Select Country</mat-option>
+                    <mat-option *ngFor="let country of countryList" [value]="country">{{country.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile >
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <mat-select >
+                    <mat-option value="none">Select State</mat-option>
+                    <mat-option *ngFor="let state of selectedCountry.states" [value]="state">{{state}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2" rowspan="2">
+            <mat-form-field class="chip-list" appearance="outline">
+                <mat-label>Hobbies</mat-label>
+                <mat-chip-list #chipList>
+                  <mat-chip
+                    *ngFor="let hobby of hobbies"
+                    (removed)="remove(hobby)">
+                    {{hobby}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input
+                    placeholder="Add hobby..."
+                    #fruitInput
+                    [formControl]="hobbiesCtrl"
+                    [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                  <mat-option *ngFor="let hobby of filteredHobbies | async" [value]="hobby">
+                    {{hobby}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+        </mat-grid-tile>
+        
+
+    </mat-grid-list>
+    
+
+
+</div>

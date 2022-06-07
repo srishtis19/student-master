@@ -1,0 +1,89 @@
+<!-- <mat-card class="detail-card">
+    <mat-card-actions align="end">
+        <button mat-mini-fab color="primary" >
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions> 
+    <mat-card-header>
+        <img mat-card-avatar src='https://material.angular.io/assets/img/examples/shiba1.jpg' />
+        <mat-card-title>Srishti Sharma</mat-card-title>
+        <mat-card-subtitle>Mumbai, Maharashtra</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <p><strong>Age:</strong>15</p>
+      <p><strong>Hobbies:</strong> Playing, Singing, Reading Books</p>
+    </mat-card-content>
+    
+  </mat-card> -->
+<div class="container">
+
+    <button mat-raised-button color="primary" class="add-button" routerLink="/add-student"> 
+        <mat-icon class="button-icon">person_add</mat-icon>
+        <span class="button-text">Add Student</span>
+    </button>
+
+    <div class="mat-elevation-z8 student-table">
+        <table mat-table [dataSource]="dataSource" >
+
+            <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+            
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let student"> {{student.name}} </td>
+            </ng-container>
+        
+            <!-- Age Column -->
+            <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let student"> {{student.age}} </td>
+            </ng-container>
+
+            <!-- Gender Column -->
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let student"> {{student.gender}} </td>
+            </ng-container>
+        
+            <!-- City Column -->
+            <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef> City </th>
+            <td mat-cell *matCellDef="let student"> {{student.city}} </td>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> State </th>
+                <td mat-cell *matCellDef="let student"> {{student.state}} </td>
+            </ng-container>
+
+            <!-- Hobbies Column -->
+            <ng-container matColumnDef="hobbies">
+                <th mat-header-cell *matHeaderCellDef> Hobbies </th>
+                <td mat-cell *matCellDef="let student"> {{student.hobbies}} </td>
+            </ng-container>
+
+            <!-- Delete Column -->
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let student">
+                <button mat-icon-button color="primary" (click)="removeStudent(student)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                        showFirstLastButtons 
+                        aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>
