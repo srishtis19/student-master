@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
@@ -25,12 +25,14 @@ export class DetailsFormComponent implements OnInit {
 
   detailsForm = new FormGroup({
 
-    firstName : new FormControl(''),
-    lastName : new FormControl(''),
-    age : new FormControl(''),
-    gender : new FormControl(''),
-    country: new FormControl(''),
-    state: new FormControl(''),
+    firstName : new FormControl('',[Validators.required]),
+    lastName : new FormControl('',[Validators.required]),
+    age : new FormControl('',[Validators.required,
+                              Validators.min(5),
+                              Validators.max(20)]),
+    gender : new FormControl('Female'),
+    country: new FormControl('',[Validators.required]),
+    state: new FormControl('',[Validators.required]),
     studentHobbies: new FormControl(this.hobbies)
 
   })
@@ -86,7 +88,7 @@ export class DetailsFormComponent implements OnInit {
   countryList = countryList
   
   cities!: Array<any>;
-  selectedCountry:any = "none"
+  selectedCountry:any = ""
   
   onSubmit(){
     let studentData = this.detailsForm.value

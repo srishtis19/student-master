@@ -21,7 +21,7 @@ export class StudentDetailsComponent implements AfterViewInit {
 
     this.studentDetailsService.getData().subscribe((res)=>{
       this.studentData = res
-      this.dataSource = new MatTableDataSource<any>(this.studentData);
+      this.dataSource = new MatTableDataSource<any>(this.studentData.reverse());
       this.dataSource._updateChangeSubscription()
       this.dataSource.paginator = this.paginator;
     })
@@ -34,7 +34,7 @@ export class StudentDetailsComponent implements AfterViewInit {
 
   
 
-  displayedColumns: string[] = [ 'name','age','gender','city','state','hobbies','delete'];
+  displayedColumns: string[] = [ 'name','age','gender','state','country','hobbies','delete'];
   //dataSource = studentData
   
 
@@ -45,7 +45,7 @@ export class StudentDetailsComponent implements AfterViewInit {
   removeStudent(student:student) {
 
     this.studentDetailsService.removeStudent(student._id)
-    
+
     const index = this.dataSource.data.indexOf(student)
     this.dataSource.data.splice(index,1)
     this.dataSource._updateChangeSubscription()
